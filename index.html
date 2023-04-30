@@ -9,30 +9,65 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/game.css">
+   
 </head>
 
 <body>
     <div class="scores_board">
-        <h2 id="score_main">YOUR SCORE IS :<span>0</span></h2>
+        <h5 id="score_main">YOUR SCORE IS :<span>0</span></h5>
+        <p id="level_score">LEVEL:<span id="lscore"></span></p>
     </div>
+    
     <div class="wrappcomponent">
         <div class="arena_wrap">
+            <h4 id="hitted">HIT</h4>
             <div class="game_start">
                 <h3>PRESS HERE TO START THE GAME </h3>
                 <p>Use your key arrow to move the player</p>
             </div>
-           
+           <!-- <div class="surface"></div> -->
                 <ul id="life_span">
                     <li class="heart_life"></li>
                     <li class="heart_life"></li>
                     <li class="heart_life"></li>
                 </ul>
-         
+                <div id="player" class="character stand down">
+                    <div class="head">
+                    </div>
+        
+                    <div class="body player_body">
+                    </div>
+        
+                    <div class="weapon bow">
+                    </div>
+                </div>
            
             <div class="sky_view game_main">
                 <!-- <div id="player"></div> -->
+                
+        
             </div>
+            <div class="gameover">
+                <h4>SCORE BOARD</h4>
+                <div class="gameover_main">
+                    <h5>Your Highest Score is :<span id="highest_score"></span></h5>
+                    <div class="score_list">
+                        
+                        Enter Your Name : <input type="text" name="fullname" id="fname">
+                       
+                    </div>
+                    <button type="submit" id="send">SUBMIT</button>
+                    <div>
+                        <small>NOTE: Name is a mandatory to continue game</small>
+                    </div>
+
+                </div>
+           
+               
+               
+            </div>
+      
         </div>
      
 

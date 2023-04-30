@@ -1,42 +1,112 @@
-/* Import website font */
+/* WELCOME TO MY FRONTEND CSS AS To Design html elements */
 @import url('https://stockfont.org/?6c9104ed5c89e7a4966839d8d30af7dba1aa2b1f891952b5e9e0fdea697a8b81');
 
-body {background-image: url(images/bg.png); margin: 0; padding: 0; font-family: 'Oxygen-Regular', sans-serif; overflow: hidden;}
+body {background-image: url('../images/bg.png'); margin: 0; padding: 0; font-family: 'Oxygen-Regular', sans-serif; overflow: hidden;}
 
+*{margin: 0px;padding: 0px;}
+.wrappcomponent{width: 100%;margin: auto;}
+.sky_view{width:100%;background-image: url('../images/bg2.JPG');height:100vh;margin: auto;position: relative;
+overflow: hidden;background-size: cover;}
 
-.sky {position: absolute;width: 100vw;height: 70vh;left: 0;top: 0;background-image: url("images/nightSky.png");}
+.arena_wrap{width:auto;height: auto;margin: auto;background-size: 25px;}
+.game_start{position:absolute;width: 420px;height: 50px;background-color:lawngreen;border-radius: 20px;
+top: 280px;left: 530px;padding: 50px;text-align: center;
+z-index: 10;}
+.surface{width: 100%;height: 20vh;position: absolute;
+bottom: 0;left: 0;background-image: url('../images/bg.png');z-index: 8;}
+/* #player{width: 40px;height: 50px;background-image: url('../images/head1.png');background-size: contain;background-repeat: no-repeat;
+position: absolute;top: 661px;left: 400px;display: none;} */
+.ufo{width: 40px;height: 50px;background-image: url('../images/alien.png');
+background-repeat: repeat;z-index: 3;background-size: contain;
+position:relative;top: 0;}
+.gameover{position:absolute;background-color:rgba(85, 203, 132, 0.44);border-radius: 20px;
+	top:40px;left: 650px;padding: 50px;text-align: center;
+	z-index: 10;display: none;width: 300px;height: 300px;overflow-y: scroll;}
+.gameover h5{padding: 15px 5px;}
+.bullet{width: 20px;height: 20px;z-index: 20;background-image: url('../images/sprites.png');background-position:50px;
+background-size:unset;}
+.bullet2{width: 20px;height: 20px;z-index: 20;background-image: url('../images/sprites.png');background-size:unset;
+	background-position:50px;}
+#life_span{position: absolute;right:0px;top: 0px;
+padding:6px 7px;display:none;z-index: 4;}
+.life{background-color: white;background-color:gold;margin: 5px 0px;}
+.scores_board{width:auto;height: 50px;background-color:#6cf1f1c7;position:absolute;
+top: 0px;left: 0px;text-align: center;z-index: 3;}
+.scores_board h5{text-align: left;width: auto;padding: 20px 10px;display: inline-block;}
+#level_score{width:auto;position:absolute;
+	top: 50px;left: 0px;text-align: center;z-index: 3;color: white;}
+
+#life_span .heart_life{width: 40px; height: 48px; background-image: url('../images/state.png'); float:right; margin-left: 8px;}
+.explode{width: 10px;height: 35px;background-color: red;animation: explode 2s infinite ;}
+@keyframes explode{
+	0%{transform: scale(0.8);}
+	50%{transform: scale(1.2);}
+	100%{transform: scale(0.8);}
+}
+.p_collapse{transform: scale(1);transform: scale(1);
+animation-name: large ;animation-duration: 0.6s;animation-iteration-count:unset;
+background-color:yellow;transition:1s;};
+.arrowmain{background-image: url('../images/sprites.png');background-size: contain;}
+.player_body{position: relative;}
+#hitted{position: absolute;top: 20px;left:740px;z-index: 10;color: wheat;font-size: 60px;animation-name: hit;animation-duration:4s;
+animation-iteration-count: infinite;display: none;}
+#restart{padding: 5px;background-color: #bbb;border-radius: 10px;}
+#reset{padding: 5px;background-color:darkred;border-radius: 10px;color: white;}
+.cactus{background-image: url('../images/tree.png');background-size: contain;
+width: 30px;height: 40px;position: absolute;z-index: 3;bottom: 50px;
+left: 30px;}
+@keyframes hit{
+	0%{transform: scale(0.3);}
+	50%{transform: scale(1);}
+	100%{transform: scale(0.3);}
+}
+
+@keyframes large{
+    0%{
+        transform: scale(1);
+    }
+    
+    50%{
+        transform: scale(1.3);
+    }
+  
+    100%{
+        transform: scale(1);
+    }
+}
+.sky {position: absolute;width: 100vw;height: 70vh;left: 0;top: 0;background-image: url("images/nightSky.png");background-color: #000;}
 
 aside {width: 200px; position: fixed; height: 100vh; left: 100%; margin-left: -240px; background-color: #ddd; border-left: 5px solid #bbb; padding: 20px;}
 #closeside {float: right; font-weight: bold; cursor: pointer;}
 
-.character {position: absolute; top: 88vh; left: 200px; display: block;}
-.character .body {width: 32px; height: 32px; background-image: url(images/body1.png); background-position: 64px 0px; margin-top: 14px; }
-.character .head {width: 32px; height: 32px; background-image: url(images/head3.png); margin-bottom: 0;position: absolute; background-repeat: no-repeat; background-position: 0px -64px;}
+.character {position: absolute; top: 88vh; left: 200px; display: block;z-index: 5;}
+.character .body {width: 32px; height: 32px; background-image: url('../images/body1.png'); background-position: 64px 0px; margin-top: 14px; }
+.character .head {width: 32px; height: 32px; background-image: url('../images/head3.png'); margin-bottom: 0;position: absolute; background-repeat: no-repeat; background-position: 0px -64px;}
 
 aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom: 20px; overflow: auto;}
 .heads li, .bodies li {width: 32px; height: 32px; background-position: 0 -64px; float: left; cursor: pointer; border: 2px solid #ddd; margin-right: 4px;}
 .heads li:hover, .bodies li:hover {border: 2px solid red;}
 #head0 {background-image: url(images/head0.png);}
 
-#head1 {background-image: url(images/head1.png);}
-#head2 {background-image: url(images/head2.png);}
-#head3 {background-image: url(images/head3.png);}
-#head4 {background-image: url(images/head4.png);}
+#head1 {background-image: url('../images/head1.png');}
+#head2 {background-image: url('../images/head2.png');}
+#head3 {background-image: url('../images/head3.png');}
+#head4 {background-image: url('../images/head4.png');}
 
 .bodies li {background-position: 64px 0px;}
-#body0 {background-image: url(images/body0.png);}
-#body1 {background-image: url(images/body1.png);}
-#body2 {background-image: url(images/body2.png);}
-#body3 {background-image: url(images/body3.png);}
-#body4 {background-image: url(images/body4.png);}
+#body0 {background-image: url('../images/body0.png');}
+#body1 {background-image: url('../images/body1.png');}
+#body2 {background-image: url('../images/body2.png');}
+#body3 {background-image: url('../images/body3.png');}
+#body4 {background-image: url('../images/body4.png');}
 
 .tree {position: absolute; left: 400px; top: 300px;}
 
 #opponent {left: 500px; top: 500px;}
-#opponent .body {background-image: url(images/body1.png);}
-#opponent .head {background-image: url(images/head1.png);}
+#opponent .body {background-image: url('../images/body1.png');}
+#opponent .head {background-image: url('../images/head1.png');}
 
-#alien {background-image: url(images/alien.png); position: absolute; height: 93.8px; width: 86px; background-size: contain; top: 15vh; left: 45%;}
+#alien {background-image: url('../images/alien.png'); position: absolute; height: 93.8px; width: 86px; background-size: contain; top: 15vh; left: 45%;}
 
 .enemy {position: absolute;}
 .enemy .head {
@@ -44,7 +114,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	height: 32px;
 	position: relative;
 }
-
+.score_list{padding: 10px;}
 .enemy .body {
 	width: 32px;
 	height: 24px;
@@ -53,10 +123,10 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 }
 
 .enemy.grey .head {
-	background-image: url(images/baddygray.png);
+	background-image: url('../images/baddygray.png');
 }
 .enemy.grey .body {
-	background-image: url(images/baddygray.png);
+	background-image: url('../images/baddygray.png');
 	top: 32px;
 
 }
@@ -218,7 +288,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 
 
 .weapon.bow {
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	background-position:  -55px -214px;
 	width: 16px;
 	height:32px;
@@ -393,7 +463,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 .enemy.appear:before {
 	content: "";
 	width: 32px; height: 24px;
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	background-position: -96px -82px;
 	display: block;
 	position: absolute;
@@ -407,7 +477,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 .enemy.hide:before {
 	content: "";
 	width: 32px; height: 24px;
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	background-position: -96px -82px;
 	display: block;
 	position: absolute;
@@ -419,7 +489,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 
 
 .arrow {
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	width: 32px;
 	height: 10px;
 	position: absolute;
@@ -428,7 +498,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 
 
 .bomb {
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	width: 31px;
 	height: 10px;
 	position: absolute;
@@ -437,7 +507,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 }
 
 .start:before {
-	background-image: url(images/head3.png);
+	background-image: url('../images/head3.png');
 	background-repeat: no-repeat;
 	background-position: 0px -64px;
 	width: 32px;
@@ -486,7 +556,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	height: 32px;
 	display: block;
 	content: " ";
-	background-image: url(images/bomb1.png);
+	background-image: url('../images/bomb1.png');
 	background-position: 0 -192px;
 	animation: bombH 0.5s steps(1) infinite;
 }
@@ -499,7 +569,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	content: " ";
 	margin-top: -100px;
 	margin-left: 48px;
-	background-image: url(images/bomb1.png);
+	background-image: url('../images/bomb1.png');
 	background-position: 0px -32px;
 	animation: bombV 0.5s steps(1) infinite;
 	
@@ -519,9 +589,9 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	37.5%, 62.5% { background-position: 0 -224px; }
 }
 
-.arrow.right {
+/* .arrow.right {
 
-}
+} */
 
 
 .arrow.left {
@@ -679,7 +749,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	position: absolute;
 	margin-left: 8px;
 	margin-top: 12px;
-	background-image: url(images/sprites.png);
+	background-image: url('../images/sprites.png');
 	animation: enemydie 2s steps(1) forwards;
 	background-position: 0px -48px;
 }
@@ -788,13 +858,13 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 
 .hud {position: fixed; width: 100%; z-index: 1000;}
 ul {list-style-type: none;float: right; margin-right: 20px;}
-.health li {width: 40px; height: 48px; background-image: url(images/state.png); float:right; margin-left: 8px;}
+.health li {width: 40px; height: 48px; background-image: url('../images/state.png'); float:right; margin-left: 8px;}
 
 
 .tile {
 	width: 16px;
 	height: 16px;
-	background-image:url(images/tiles.png);
+	background-image:url('../images/tiles.png');
 	padding: 0;
 }
 
@@ -13098,3 +13168,5 @@ ul {list-style-type: none;float: right; margin-right: 20px;}
 	overflow-x: scroll;
 	height: 512;
 }
+
+
