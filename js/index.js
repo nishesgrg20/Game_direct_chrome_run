@@ -5,7 +5,7 @@ let heart_l = document.getElementsByClassName('heart_life')
 let l = gamemain.getBoundingClientRect();
 // let player = document.querySelector('#player')
 let key = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, space: false }
-var player_detail = { speed: 8, life: 3, score: 0, level: '1' }
+var player_detail = { speed: 6, life: 3, score: 0, level: '1' }
 let ballspeed = {
     first_left_speed: 2, first_top_speed: 2,
     second_l_speed: 2, second_t_speed: 1
@@ -442,7 +442,7 @@ function maingamestart() {
             ballspeed.second_t_speed = 4
             ballspeed.second_l_speed = 3
             ballspeed.first_left_speed=2
-          
+            player_detail.speed=6.8
             
         
           
@@ -455,12 +455,11 @@ function maingamestart() {
         else if ( player_detail.score >1500 && player_detail.score<2500) {
             player_detail.level = '2'
             l_score.innerText = player_detail.level
-            ballspeed.first_top_speed = 4
-            ballspeed.second_t_speed = 4
-            ballspeed.second_l_speed = 3
+            ballspeed.first_top_speed = 4.6
+            ballspeed.second_t_speed = 4.3
+            ballspeed.second_l_speed = 3.5
             ballspeed.first_left_speed=2
-            ufomove.left=8
-            ufomove.right=8
+            player_detail.speed=7
            
           
          
@@ -479,6 +478,7 @@ function maingamestart() {
             ballspeed.second_l_speed=4
             ufomove.left=8
             ufomove.right=8
+            player_detail.speed=8
            
             
            
