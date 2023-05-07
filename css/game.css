@@ -761,6 +761,7 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	background-image: url('../images/sprites.png');
 	animation: enemydie 2s steps(1) forwards;
 	background-position: 0px -48px;
+	
 }
 
 .enemy.dead .body, .enemy.dead .weapon, .enemy.dead .head {
@@ -790,9 +791,9 @@ aside ul {list-style-type: none; margin-left: 0; padding-left: 0; margin-bottom:
 	background-position: 0px -480px;
 	margin-top: -12px;
 	position: absolute;
-	animation: deadarms 1s steps(1) forwards;
+	animation: deadarms 0.5s steps(1) forwards;
 }
-
+.score_b{display: none;}
 .character.stand.dead .head {
 	animation: deadhead 1s steps(1) forwards;
 }

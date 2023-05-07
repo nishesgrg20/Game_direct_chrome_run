@@ -20,6 +20,8 @@ let l_score = document.querySelector('#lscore')
 let ufomove = { left: 6, right: 6 }
 let gameover_main = document.querySelector('.gameover')
 let highest_score = document.querySelector('#highest_score')
+let down=true
+
 
 
 //personal gamedata of no of bullet and ufo running,will increase as level;//
@@ -203,21 +205,21 @@ function lifeminus() {
         lifespan.removeChild(heart_l[0]);
         setTimeout(() => {
             returnflag2 = true;
-        }, 400)
+        }, 300)
 
     }
 
     else if (heart_l.length == 1 && returnflag2 == true) {
-        lifespan.removeChild(heart_l[0]);
-
-        gameover()
-
-        //GAME OVER LOGIC HERE //
-
+       
+        player_hero.classList.add('dead');
+      
+        setTimeout(()=>{
+            gameover()
+        },350)
     }
+    
 
-
-    setTimeout(() => { returnflag = true }, 500);
+    setTimeout(() => { returnflag = true }, 400);
 
 
 
@@ -330,6 +332,7 @@ function bulletmove() {
 }
 function spaceshipmove() {
     let spaceship = document.querySelectorAll('.ufo')
+  
     spaceship.forEach((item) => {
 
         if (item.x >= -60 && item.x < 1480 && item.start == true) { //the item position must be in between to movre right// 
@@ -349,6 +352,24 @@ function spaceshipmove() {
                 item.start = true
             }
         }
+       
+        if (item.y<80 && down==true){
+            item.y+=0.5
+            item.style.top=item.y+'px'
+           
+        }
+        else{
+       
+            down=false
+            item.y-=0.5
+            item.style.top=item.y+'px'
+            if (item.y==0){
+                down=true
+            }
+           
+        }
+        
+  
 
 
 
@@ -384,7 +405,7 @@ function maingamestart() {
     for (i = 0; i < 6; i++) {
         let cactus = document.createElement('div')
         cactus.setAttribute('class', 'cactus')
-        cactus.style.bottom = (i * 12) + 'px'
+        cactus.style.bottom = (i * 18) + 'px'
         cactus.style.left = (i * 280) + 'px'
         gamemain.appendChild(cactus)
 
@@ -399,8 +420,11 @@ function maingamestart() {
         let ufo = document.createElement('div')
         ufo.setAttribute('class', 'ufo')
         ufo.x = 1500
+        // To change position from top of ufo randomly which we get from random() functions//
+        ufo.y=Math.floor((Math.random()*102))   
         ufo.start = true
         ufo.style.left = ufo.x + 'px'
+        ufo.style.top=ufo.y+'px'
         gamemain.appendChild(ufo)
     }
 
@@ -416,7 +440,7 @@ function maingamestart() {
         bullet.style.position = 'absolute'
         bullet.x = i * Math.floor((Math.random() * 450))
         bullet.style.left = bullet.x + 'px'
-        bullet.y = i * Math.floor((Math.random() * 470 + 10))
+        bullet.y = i * Math.floor((Math.random() * 270 + 10))
         bullet.style.top = bullet.y + 'px'
         bullet.style.opacity = 0
         ufo.appendChild(bullet)
@@ -430,7 +454,7 @@ function maingamestart() {
         bullet2.x = i * Math.floor((Math.random() * 40 + 30))
         bullet2.style.right = bullet2.x + 'px'
         //GENERATING RANDOM NUMBERS TO CHANGE POSITION OF BOMB y-AXIS//
-        bullet2.y = i * Math.floor((Math.random() * 470 + 30))
+        bullet2.y = i * Math.floor((Math.random() * 770 + 30))
         bullet2.style.top = bullet2.y + 'px'
         bullet2.style.opacity = 1
         ufo.appendChild(bullet2)
@@ -440,6 +464,7 @@ function maingamestart() {
     // the setinterval started as making dom elements move its position as apply of animation on it//
     ok = setInterval(() => { 
         player_detail.score += 1
+        
 
         score_main.innerText = `YOUR SCORE IS :${player_detail.score}`
 
@@ -522,6 +547,10 @@ function gameover() {
     highest_score.innerText = player_detail.score
     inputname.value = ''
     send.addEventListener('click', () => {
+        let gameover_logo=document.getElementsByClassName('gameover_logo');
+        gameover_logo[0].style.display='none';
+        let score_b=document.getElementsByClassName('score_b')
+        score_b[0].style.display='block'
 
         let inputnamevalue = inputname.value
         if (inputnamevalue != '') {
@@ -529,6 +558,7 @@ function gameover() {
 
             gameover_main2.innerHTML = ''
             // ISSUE//
+
             for (i = 0; i < localStorage.length; i++) {
                 if (i == 0 && localStorage.length == 1) {
                     let a = document.createElement('span')
