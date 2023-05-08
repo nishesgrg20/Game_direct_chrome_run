@@ -563,14 +563,14 @@ function gameover() {
                 if (i == 0 && localStorage.length == 1) {
                     let a = document.createElement('span')
                     a.innerHTML = `<h5>${localStorage.key(i)}= ${localStorage.getItem(localStorage.key(i))}</h5>
-                        <button id='restart'>Restart</button><button id='reset'>Reset</button>`
+                        <button id='restart'>Play Again</button><button id='reset'>Reset</button>`
 
                     gameover_main2.appendChild(a)
                 }
                 else if (i == localStorage.length - 1) {
                     let a = document.createElement('span')
                     a.innerHTML = `<h5>${localStorage.key(i)} = ${localStorage.getItem(localStorage.key(i))}</h5>
-                        <button id='restart'>Restart</button> <button id='reset'>Reset</button>`
+                        <button id='restart'>Play Again</button> <button id='reset'>Reset</button>`
 
                     gameover_main2.appendChild(a)
 
