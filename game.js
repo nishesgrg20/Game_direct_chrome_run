@@ -1,26 +1,25 @@
-let gamestart = document.querySelector('.game_start')
-let gamemain = document.querySelector('.game_main')
-let lifespan = document.getElementById('life_span')
-let heart_l = document.getElementsByClassName('heart_life')
+let gamestart = document.querySelector('.game_start');
+let gamemain = document.querySelector('.game_main');
+let lifespan = document.getElementById('life_span');
+let heart_l = document.getElementsByClassName('heart_life');
 let l = gamemain.getBoundingClientRect();
-// let player = document.querySelector('#player')
 let key = { ArrowUp: false, ArrowDown: false, ArrowLeft: false, ArrowRight: false, space: false }
-var player_detail = { speed: 5, life: 3, score: 0, level: '1' } // object created of player//
+var player_detail = { speed: 2, life: 3, score: 0, level: '1' } // object created of the player//
 let ballspeed = {
-    first_left_speed: 2, first_top_speed: 2.6,
-    second_l_speed: 2, second_t_speed: 2.6
+    first_left_speed: 1.5, first_top_speed:1.5,
+    second_l_speed:1.5, second_t_speed:1.5
 };
-let returnflag = false
-let returnflag2 = false
-let score_main = document.querySelector('#score_main')
-let player_hero = document.getElementById('player')
-let hitted = document.querySelector('#hitted')
-let playerbody = document.querySelector('.player_body')
-let l_score = document.querySelector('#lscore')
-let ufomove = { left: 6, right: 6 }
-let gameover_main = document.querySelector('.gameover')
-let highest_score = document.querySelector('#highest_score')
-let down=true
+let returnflag = false;
+let returnflag2 = false;
+let score_main = document.querySelector('#score_main');
+let player_hero = document.getElementById('player');
+let hitted = document.querySelector('#hitted');
+let playerbody = document.querySelector('.player_body');
+let l_score = document.querySelector('#lscore');
+let ufomove = { left:1, right:1};
+let gameover_main = document.querySelector('.gameover');
+let highest_score = document.querySelector('#highest_score');
+let down=true;
 
 
 
@@ -28,32 +27,37 @@ let down=true
 let game_data = { noofbullet: 4, noofufo: 1, noofbullet2: 4 }
 
 // adding of an event keyevent using arrow function//
+// if any key is pressed the key up events will run and any key is made true //
 window.addEventListener('keydown', (a) => {
     key[a.key] = true
     if (a.keyCode == 32) {
-        key.space = true
+        key.space = true;
 
     }
 
 })
+// when key is release any now key is made to false,because movement of player only go right if the right key is pressed,if not the 
+//it is false
+
 window.addEventListener('keyup', (a) => {
-    key[a.key] = false
+    key[a.key] = false;
     player_hero.className = 'character';
   
 
 })
 gamestart.addEventListener('click', () => {
-    gamestart.style.display = 'none'
-    lifespan.style.display = 'block'
-    maingamestart()
+    gamestart.style.display = 'none';
+    lifespan.style.display = 'block';
+    maingamestart();
 })
 
 // creation of cactus element using js way and appending in html dom//
 function cactuscollide(cactus) {
-    let cactus_info = cactus.getBoundingClientRect()
-    let player = document.querySelector('#player')
-    let player_info = player.getBoundingClientRect()
-    return (player_info.top > cactus_info.bottom || player_info.bottom < cactus_info.top || player_info.left > cactus_info.right || player_info.right < cactus_info.left)
+    let cactus_info = cactus.getBoundingClientRect();
+    let player = document.querySelector('#player');
+    let player_info = player.getBoundingClientRect();
+
+    return (player_info.top > cactus_info.bottom || player_info.bottom < cactus_info.top || player_info.left > cactus_info.right || player_info.right < cactus_info.left);
 
 
 
@@ -63,6 +67,10 @@ function cactuscollide(cactus) {
 function collide_infoboth(sword, bomb) {
     let bomb_info = bomb.getBoundingClientRect()
     let sword_info = sword.getBoundingClientRect()
+    
+    // this tells that sword top position must be greater than the bomb bottom bottom position in order not to collide when player 
+ //   throws and arrow,OR sword  bottom position of sword lesser than top position of bomb OR  sword left greater than  bomb right
+ //OR sword right must be lesser than bomb left, HERE all this condition must be failed in order to COLLIDE because use or OR operator//
     return (sword_info.top > bomb_info.bottom || sword_info.bottom < bomb_info.top || sword_info.left > bomb_info.right ||
         sword_info.right < bomb_info.left)
 
@@ -79,7 +87,7 @@ function destroy(bomb) {
         }, 50)
         let arrowmain = document.querySelectorAll('.arrowmain');
         arrowmain.forEach((item) => {
-            item.y += 5;
+            item.y += 2;
 
             if (item.y > 660) {
                 item.y = 0;
@@ -89,11 +97,12 @@ function destroy(bomb) {
             item.style.bottom = item.y + 'px';
             if (collide_infoboth(item, bomb) == false)//argument as a value passing to function collide_infoboth parameter + condition applied here//
             {
-                bomb.style.backgroundImage = "url('../images/bomb1.png')";
-                setTimeout(() => {
+                bomb.style.backgroundImage = "url('images/bomb1.png')";
+                // the function settimeout atomatically starts after the time given and stops it after one time run//
+                setTimeout(() => {       
                     bomb.style.display = 'none';
                     item.style.display = 'none';
-                    bomb.style.backgroundImage = "url('../images/sprites.png')";
+                    bomb.style.backgroundImage = "url('images/sprites.png')";
                 }, 100)
 
                 // weapon(sword of player) visible after 1 seconds
@@ -138,7 +147,7 @@ function playermove() {
     if (key.ArrowUp) {
 
 
-        if (playerdata.top > 560) {
+        if (playerdata.top > 607.5) {
             top -= player_detail.speed;
         }
         player_hero.className = 'character walk up ';
@@ -165,7 +174,7 @@ function playermove() {
     }
     if (key.ArrowDown) {
 
-        if (playerdata.top < 660) {
+        if (playerdata.top < 697) {
             top += player_detail.speed;
 
         }
@@ -203,19 +212,22 @@ function lifeminus() {
 
     else if (heart_l.length == 2 && returnflag == true) {    //loop runs here more than one time so conditon applied//
         lifespan.removeChild(heart_l[0]);
+
+        // adding here settimout with time 300, which means after given a time the code will run and now return flag2 value changed to true//
+        //Means now the next else if will run is because the heart lenghth decrease to 1 which the next codition will meet and execute//
         setTimeout(() => {
             returnflag2 = true;
         }, 300)
 
     }
 
-    else if (heart_l.length == 1 && returnflag2 == true) {
+    else if (heart_l.length == (1) && returnflag2 == true) {
        
         player_hero.classList.add('dead');
       
-        setTimeout(()=>{
+       
             gameover()
-        },350)
+       
     }
     
 
@@ -243,22 +255,26 @@ function bulletmove() {
 
 
     let allbullets = document.querySelectorAll('.bullet');
-    allbullets.forEach((item) => {
+    allbullets.forEach((item,index) => {
+        if (index == 1) {
+            item.y += 2;
+            
+        }
 
-        if (item.y < 560 && item.x < 1500) {
+        if (item.y < 580 && item.x < 1500) {
             item.y += ballspeed.first_top_speed;
             item.x += ballspeed.first_left_speed;
         }
 
 
         else {
-            item.style.backgroundImage = "url('../images/bomb1.png')";
+            item.style.backgroundImage = "url('images/bomb1.png')";
             item.style.backgroundPosition = "94px";
             item.style.width = '34px';
             item.style.height = '70px';
             item.style.transform = 'rotate(360deg)';
             setTimeout(() => {
-                item.style.backgroundImage = "url('../images/sprites.png')";
+                item.style.backgroundImage = "url('images/sprites.png')";
 
                 item.style.backgroundPosition = "-96px -401px";
                 item.style.width = '31px';
@@ -292,18 +308,18 @@ function bulletmove() {
             item.y += 2;
             item.x -= 1;
         }
-        if (item.y < 610 && item.x < 1560) {
+        if (item.y < 600 && item.x < 1560) {
             item.y += ballspeed.second_t_speed;
             item.x += ballspeed.second_l_speed;
         }
         else {
-            item.style.backgroundImage = "url('../images/bomb1.png')";
+            item.style.backgroundImage = "url('images/bomb1.png')";
             item.style.backgroundPosition = "94px";
             item.style.width = '34px';
             item.style.height = '70px';
             item.style.transform = 'rotate(360deg)';
             setTimeout(() => {
-                item.style.backgroundImage = "url('../images/sprites.png')";
+                item.style.backgroundImage = "url('images/sprites.png')";
                 item.style.backgroundPosition = "-96px -401px";
                 item.style.width = '31px';
                 item.style.height = '10px';
@@ -335,7 +351,7 @@ function spaceshipmove() {
   
     spaceship.forEach((item) => {
 
-        if (item.x >= -60 && item.x < 1480 && item.start == true) { //the item position must be in between to movre right// 
+        if (item.x >= parseInt(-60) && item.x < parseInt(1480) && item.start == true) { //the item position must be in between to movre right// 
             //increase whenever if ihe ufo position from left is less than -59 and max upto less than 1480 ,move to right//
             item.x += ufomove.right
             item.style.left = item.x + 'px'
@@ -353,7 +369,7 @@ function spaceshipmove() {
             }
         }
        
-        if (item.y<80 && down==true){
+        if (item.y<70 && down==true){
             item.y+=0.5
             item.style.top=item.y+'px'
            
@@ -382,14 +398,14 @@ function spaceshipmove() {
 for (i = 0; i < 1; i++) {   //Sword for hero created the loop runs here one time//
     let arrow = document.createElement('div');
     arrow.setAttribute('class', 'arrowmain');
-    arrow.style.width = '10px'
+    arrow.style.width = '15px'
     arrow.style.height = '35px'
     arrow.style.position = 'absolute'
-    arrow.style.backgroundImage = "url('../images/sword1.png')";
+    arrow.style.backgroundImage = "url('images/sword1.png')";
     arrow.style.backgroundSize = 'auto';
     arrow.style.left = '0px'
-    arrow.y = i * 30
-    arrow.style.bottom = arrow.y + 'px'
+    arrow.y = (i * 30)
+    arrow.style.bottom = (arrow.y) + 'px'
     arrow.style.transform = 'rotate(180deg)'
 
     playerbody.appendChild(arrow)
@@ -398,14 +414,14 @@ for (i = 0; i < 1; i++) {   //Sword for hero created the loop runs here one time
 }
 
 function maingamestart() {
-    gamemain.innerHTML = ''
+   
     l_score.innerText = player_detail.level
 
 
     for (i = 0; i < 6; i++) {
         let cactus = document.createElement('div')
         cactus.setAttribute('class', 'cactus')
-        cactus.style.bottom = (i * 18) + 'px'
+        cactus.style.bottom = (i * 22) + 'px'
         cactus.style.left = (i * 280) + 'px'
         gamemain.appendChild(cactus)
 
@@ -447,23 +463,23 @@ function maingamestart() {
     }
     //bomb//
     for (i = 0; i < game_data.noofbullet2; i++) {
-        let bullet2 = document.createElement('div')
+        let bullet2 = document.createElement('div');
         bullet2.setAttribute('class', 'bullet2')
         bullet2.style.position = 'absolute'
         //GENERATING RANDOM NUMBERS TO CHANGE POSITION OF BOMB X-AXIS//
         bullet2.x = i * Math.floor((Math.random() * 40 + 30))
-        bullet2.style.right = bullet2.x + 'px'
+        bullet2.style.right = (bullet2.x)+ 'px';
         //GENERATING RANDOM NUMBERS TO CHANGE POSITION OF BOMB y-AXIS//
-        bullet2.y = i * Math.floor((Math.random() * 770 + 30))
-        bullet2.style.top = bullet2.y + 'px'
-        bullet2.style.opacity = 1
-        ufo.appendChild(bullet2)
+        bullet2.y = i * Math.floor((Math.random() * 770 + 30));
+        bullet2.style.top = (bullet2.y )+ 'px';
+        bullet2.style.opacity = 1;
+        ufo.appendChild(bullet2);
     }
 
 
     // the setinterval started as making dom elements move its position as apply of animation on it//
     ok = setInterval(() => { 
-        player_detail.score += 1
+        player_detail.score +=1
         
 
         score_main.innerText = `YOUR SCORE IS :${player_detail.score}`
@@ -471,11 +487,11 @@ function maingamestart() {
         if (player_detail.score > 1200 && player_detail.score < 1500) {
             player_detail.level = '1'
             l_score.innerText = player_detail.level
-            ballspeed.first_top_speed = 4
-            ballspeed.second_t_speed = 4
-            ballspeed.second_l_speed = 3
-            ballspeed.first_left_speed = 2
-            player_detail.speed = 6.8
+            ballspeed.first_top_speed = 1.6
+            ballspeed.second_t_speed = 1.6
+            ballspeed.second_l_speed = 1.6
+            ballspeed.first_left_speed = 1.6
+            player_detail.speed = 2.3
 
 
 
@@ -488,11 +504,11 @@ function maingamestart() {
         else if (player_detail.score > 1500 && player_detail.score < 2500) {
             player_detail.level = '2'
             l_score.innerText = player_detail.level
-            ballspeed.first_top_speed = 4.6
-            ballspeed.second_t_speed = 4.3
-            ballspeed.second_l_speed = 3.5
-            ballspeed.first_left_speed = 2
-            player_detail.speed = 7
+            ballspeed.first_top_speed = 1.9
+            ballspeed.second_t_speed = 1.9
+            ballspeed.second_l_speed =1.9
+            ballspeed.first_left_speed =1.9
+            player_detail.speed = 2.3
 
 
 
@@ -505,13 +521,13 @@ function maingamestart() {
         else if (player_detail.score > 2500) {
             player_detail.level = '3'
             l_score.innerText = player_detail.level
-            ballspeed.first_top_speed = 5
-            ballspeed.first_left_speed = 3
-            ballspeed.second_t_speed = 5
-            ballspeed.second_l_speed = 4
-            ufomove.left = 8
-            ufomove.right = 8
-            player_detail.speed = 8
+            ballspeed.first_top_speed = 2
+            ballspeed.first_left_speed = 2
+            ballspeed.second_t_speed = 2
+            ballspeed.second_l_speed = 2
+            ufomove.left = 2
+            ufomove.right = 2
+            player_detail.speed =2.5
 
 
 
@@ -536,9 +552,9 @@ function maingamestart() {
 }
 
 function gameover() {
-    let send = document.querySelector('#send')
-    let inputname = document.querySelector('#fname')
-    let gameover_main2 = document.querySelector('.gameover_main')
+    let send = document.querySelector('#send');
+    let inputname = document.querySelector('#fname');
+    let gameover_main2 = document.querySelector('.gameover_main');
 
     clearInterval(ok)
 
@@ -553,8 +569,10 @@ function gameover() {
         score_b[0].style.display='block'
 
         let inputnamevalue = inputname.value
+        // giving condition where if the input value is a null the the condition given to it will not run 
+        // runs only after if get some value in it//
         if (inputnamevalue != '') {
-            localStorage.setItem(inputnamevalue, player_detail.score)
+            localStorage.setItem(inputnamevalue, player_detail.score)   //setting the value in local storage,as a key pair//
 
             gameover_main2.innerHTML = ''
             // ISSUE//
@@ -563,21 +581,21 @@ function gameover() {
                 if (i == 0 && localStorage.length == 1) {
                     let a = document.createElement('span')
                     a.innerHTML = `<h5>${localStorage.key(i)}= ${localStorage.getItem(localStorage.key(i))}</h5>
-                        <button id='restart'>Play Again</button><button id='reset'>Reset</button>`
+                        <button id='restart'>Play Again ?</button><button id='reset'>Reset</button>`;
 
-                    gameover_main2.appendChild(a)
+                    gameover_main2.appendChild(a);
                 }
                 else if (i == localStorage.length - 1) {
-                    let a = document.createElement('span')
+                    let a = document.createElement('span');
                     a.innerHTML = `<h5>${localStorage.key(i)} = ${localStorage.getItem(localStorage.key(i))}</h5>
-                        <button id='restart'>Play Again</button> <button id='reset'>Reset</button>`
+                        <button id='restart'>Play Again ?</button> <button id='reset'>Reset</button>`
 
-                    gameover_main2.appendChild(a)
+                    gameover_main2.appendChild(a);
 
                 }
                 else {
-                    let a = document.createElement('span')
-                    a.innerHTML = `<h5>${localStorage.key(i)}= ${localStorage.getItem(localStorage.key(i))}</h5>`
+                    let a = document.createElement('span');
+                    a.innerHTML = `<h5>${localStorage.key(i)}= ${localStorage.getItem(localStorage.key(i))}</h5>`;
 
                     gameover_main2.appendChild(a)
 
@@ -586,14 +604,15 @@ function gameover() {
 
 
             }
-            let restart = document.querySelector('#restart')
+            let restart = document.querySelector('#restart');
+            // implementibe click event as if the restart button get click it will restart due to use of location.reload() function//
             restart.addEventListener('click', () => {
                 location.reload()
             })
-            let reset = document.querySelector('#reset')
+            let reset = document.querySelector('#reset');
             reset.addEventListener('click', () => {
-                localStorage.clear()
-                location.reload()
+                localStorage.clear();
+                location.reload();
             })
 
         }
